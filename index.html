@@ -15,13 +15,11 @@
     <script type="text/javascript">
       var spec1 = "js/week9_choropleth_map.json";
       vegaEmbed("#week9_choropleth_map", spec1)
-        .then(function (result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        })
+        .then(function (result) {})
         .catch(console.error);
     </script>
     <h1>Week 9 Homework</h1>
-    <br>
+    <br />
     <div class="container-row">
       <div
         id="week9_choropleth_map"
@@ -41,13 +39,11 @@
     <script type="text/javascript">
       var spec1 = "js/choropleth_map.json";
       vegaEmbed("#choropleth_map", spec1)
-        .then(function (result) {
-          // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-        })
+        .then(function (result) {})
         .catch(console.error);
     </script>
     <h1>Week 10 Homework</h1>
-    <br>
+    <br />
     <div class="container-row">
       <div
         id="choropleth_map"
@@ -64,7 +60,26 @@
 
     <div class="container-next-row"></div>
 
-    <br />
-    <br />
+    <script type="text/javascript">
+      var spec1 = "js/bubble_plot.json";
+      vegaEmbed("#bubble_plot", spec1)
+        .then(function (result) {})
+        .catch(console.error);
+    </script>
+    <div class="container-row">
+      <div
+        id="bubble_plot"
+        style="
+          width: 100%;
+          height: 500px;
+          text-align: center;
+          font-size: 12;
+          font-family: Montserrat, sans-serif;
+          color: #444444;
+        "
+      ></div>
+    </div>
+
+    <div class="container-next-row"></div>
   </body>
 </html>

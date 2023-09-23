@@ -1,0 +1,97 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "title": "Global Suicides Based on Gender and Age",
+    "data": {
+      "url": "data/suicidesByGenderAge.csv"
+    },
+    "width": "container",
+    "height": "container",
+    "layer": [
+      {
+        "mark": {
+          "type": "circle",
+          "opacity": 0.8,
+          "stroke": "black",
+          "strokeWidth": 1
+        },
+        "encoding": {
+          "x": {
+            "field": "Age_Range",
+            "type": "nominal",
+            "axis": { "grid": false },
+            "title": "Age Range"
+          },
+          "y": {
+            "field": "Sex",
+            "type": "nominal",
+            "sort": ["Male", "Female"],
+            "axis": { "title": "Gender" }
+          },
+          "size": {
+            "field": "Suicides",
+            "type": "quantitative",
+            "title": "Suicide Deaths",
+            "legend": { "clipHeight": 40 },
+            "scale": { "rangeMax": 5000 }
+          },
+          "color": {
+            "field": "Sex",
+            "type": "nominal",
+            "scale": { "range": ["#ff7f0e", "#1f77b4"] },
+            "legend": null
+          },
+          "tooltip": [
+            { "field": "Sex", "title": "Gender" },
+            { "field": "Suicides", "title": "Suicide Count" }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "color": "black",
+          "fontSize": 10,
+          "fontStyle": "italic",
+          "dx": 10,
+          "xOffset": -130,
+          "yOffset": -160,
+          "dy": 0,
+          "align": "left"
+        },
+        "encoding": {
+          "text": {
+            "value": [
+              "Suicide fatalities among males surpass those among females across all age groups."
+            ]
+          },
+          "opacity": {
+            "value": 0.3
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "color": "black",
+          "fontSize": 10,
+          "fontStyle": "italic",
+          "dx": 10,
+          "xOffset": -150,
+          "yOffset": -20,
+          "dy": 0,
+          "align": "left"
+        },
+        "encoding": {
+          "text": {
+            "value": [
+              "Suicide counts notably peak in the age", "range of 20 to 59 for both genders.", "This could be attributed to the pressures", "associated with work."
+            ]
+          },
+          "opacity": {
+            "value": 0.3
+          }
+        }
+      }
+    ]
+  }
+  
