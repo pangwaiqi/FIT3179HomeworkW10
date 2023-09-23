@@ -1,6 +1,94 @@
-#choropleth_map {
-	top:100px;
-	bottom: 100px; 
-	left: 100px;
-	right: 100px;
+html,
+body {
+  background-color: #ffffff;
+}
+
+.pure-u-1 img {
+  width: 100%;
+}
+
+.pure-u-1-3 img {
+  width: 30vw;
+  height: 30vw;
+}
+
+.pure-u-1-3 {
+  margin-top: 30px;
+  height: 30vw;
+}
+
+#text_div {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#title {
+  font-weight: bold;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 45px;
+  font-family: "Josefin Sans", sans-serif;
+  color: #0570b0;
+}
+
+h1 {
+  text-align: center;
+  color: #000000;
+  font-size: 24px;
+  font-family: "Montserrat", sans-serif;
+}
+
+p {
+  color: #444444;
+  font-size: 12px;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* Use flexbox to create a row of containers */
+.container-row {
+  display: flex;
+  font-family: "Montserrat", sans-serif;
+  color: #505050;
+  font-size: 12px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+/* Style the individual containers */
+.container {
+  flex: 1; /* Distribute available space equally */
+  padding: 10px;
+  border: 1px solid #ffffff;
+  margin: 5px;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: #505050;
+  font-size: 12px;
+}
+
+.container-icon {
+  height: 70px;
+  width: 70px;
+  padding-top: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.container-numbering {
+  height: 50px;
+  width: 50px;
+}
+
+.container-numbering-padding {
+  width: 50px;
+}
+
+.side-padding {
+  width: 30px;
+}
+
+.container-next-row {
+  height: 120px;
 }

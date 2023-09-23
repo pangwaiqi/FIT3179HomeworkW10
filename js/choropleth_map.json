@@ -1,75 +1,177 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "title": "Global Deaths in 2019",
-    "width": 800,
-    "height": 450,
-    "projection": {"type": "equalEarth"},
-    
-    "data": {
-      "url": "js/ne_50m_admin_0_map_subunits.json",
-      "format": {"type": "topojson", "feature": "ne_50m_admin_0_map_subunits"}
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Global Death Rate 1985-2019 (Week 10 Homework)",
+  "width": "container",
+  "height": "container",
+  "data": {
+    "url": "https://raw.githubusercontent.com/JiazhouLiu/FIT3179/main/VegaLite/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+    "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+  },
+
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2019,
+      "bind": {
+        "input": "range",
+        "min": 1985,
+        "max": 2019,
+        "step": 1,
+        "name": "Year: "
+      }
+    }
+  ],
+  "projection": {
+    "type": "equalEarth"
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/JiazhouLiu/FIT3179/main/VegaLite/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+        "format": { "type": "topojson", "feature": "ne_110m_admin_0_countries" }
+      },
+      "transform": [
+        {
+          "calculate": "'Data is not available in ' + datum.properties.NAME",
+          "as": "note"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "lightgray",
+        "stroke": "white",
+        "strokeWidth": 0.5
+      },
+      "encoding": { "tooltip": { "field": "note" } }
     },
-  
-    "layer": [
-      {
-        "transform": [
-          {
-            "calculate": "'Data is not available in ' + datum.properties.SOVEREIGNT",
-            "as": "note"
-          }
-        ],
-        "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"},
-        "encoding": {"tooltip": {"field": "note"}}
+    {
+      "data": {
+        "url": "data/globalSuicides.csv"
       },
-      {
-        "data": {
-          "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
-          "format": {"type": "topojson", "feature": "oceans"}
-        },
-        "mark": {"type": "geoshape", "fill": "skyblue"}
-      },
-      {
-        "data": {
-          "url": "js/ne_110m_graticules_30.json",
-          "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
-        },
-        "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
-      },
-      {
-        "transform": [
-          {
-            "lookup": "properties.SOVEREIGNT",
-            "from": {
-              "data": {
-                "url": "data/globalSuicides.csv"
-              },
-              "key": "Country Name",
-              "fields": ["Death rate per 100 000 population"]
-            }
+      "params": [
+        { "name": "hover", "select": { "type": "point", "on": "mouseover" } }
+      ],
+      "transform": [
+        {
+          "lookup": "Country Name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/JiazhouLiu/FIT3179/main/VegaLite/3_choropleth_map/js/ne_110m_admin_0_countries.topojson",
+              "format": {
+                "type": "topojson",
+                "feature": "ne_110m_admin_0_countries"
+              }
+            },
+            "key": "properties.NAME"
           },
-          {
-            "calculate": "datum['Death rate per 100 000 population']",
-            "as": "Death rate per 100 000 population"
-          }
-        ],
-  
-        "mark": {"type": "geoshape"},
-        "encoding": {
-          "color": {
+          "as": "geo"
+        },
+        { "filter": "datum.Year == Year_selection" }
+      ],
+      "mark": { "type": "geoshape", "stroke": "#fff", "strokeWidth": 0.5 },
+      "encoding": {
+        "description": { "field": "Country Name" },
+        "shape": { "field": "geo", "type": "geojson" },
+        "color": {
+          "condition": {
+            "param": "hover",
             "field": "Death rate per 100 000 population",
+            "title": ["Death Rate", "(per 100,000", "population)", ""],
             "type": "quantitative",
             "scale": {
               "type": "threshold",
-              "domain": [20,40,60,80],
+              "domain": [20, 40, 60, 80],
               "range": ["#feedde", "#fdbe85", "#fd8d3c", "#e6550d", "#a63603"]
             }
           },
-          "tooltip": [
-            {"field": "properties.SOVEREIGNT", "type": "nominal", "title": "Country Name"},
-            {"field": "Death rate per 100 000 population", "type": "quantitative"}
-          ]
+          "value": "lightgrey"
+        },
+        "tooltip": [
+          { "field": "Country Name", "type": "nominal" },
+          {
+            "field": "Death rate per 100 000 population",
+            "type": "quantitative",
+            "title": "Death rate per 100 000 population",
+            "format": ","
+          },
+          { "field": "Year", "type": "quantitative" }
+        ],
+        "strokeWidth": {
+          "condition": { "param": "hover", "empty": false, "value": 1 },
+          "value": 1
+        },
+        "opacity": {
+          "condition": {
+            "param": "hover",
+            "empty": false,
+            "value": 1
+          },
+          "value": 1
         }
       }
-    ],
-    "config": {}
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+        "format": { "type": "topojson", "feature": "oceans" }
+      },
+      "mark": { "type": "geoshape", "fill": "skyblue" }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/mingsheng2002/3179/main/Week-9-Homework/js/ne_110m_graticules_30.json",
+        "format": { "type": "topojson", "feature": "ne_110m_graticules_30" }
+      },
+      "mark": { "type": "geoshape", "fill": null, "stroke": "lightgray" }
+    },
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/mingsheng2002/3179-Data-Visualisation-Project-2/main/choropleth_map/data/Continent_location.csv"
+      },
+      "mark": {
+        "type": "text",
+        "color": "black",
+        "fontWeight": "bolder",
+        "fontSize": 12
+      },
+      "encoding": {
+        "text": { "field": "Continent", "type": "nominal" },
+        "latitude": { "field": "Latitude", "type": "quantitative" },
+        "longitude": { "field": "Longitude", "type": "quantitative" }
+      }
+    },
+    {
+      "transform": [
+        {
+          "lookup": "properties.NAME",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/3_choropleth_map/data/countryInfo.csv"
+            },
+            "key": "name",
+            "fields": ["latitude", "longitude"]
+          }
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "color": "black",
+        "fontStyle": "bold",
+        "stroke": "whitesmoke",
+        "strokeWidth": 0.015
+      }
+    }
+  ],
+  "config": {
+    "view": {
+      "stroke": "transparent"
+    },
+    "background": "#ffffff",
+    "font": "Montserrat, sans-serif",
+    "axis": {
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    }
   }
+}
