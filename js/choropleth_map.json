@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Global Death Rate 1985-2019 (Week 10 Homework)",
+  "title": "Global Death Rate 1985-2019",
   "width": "container",
   "height": "container",
   "data": {
@@ -161,7 +161,40 @@
         "stroke": "whitesmoke",
         "strokeWidth": 0.015
       }
-    }
+    },
+    {
+      "mark": {"type": "text", "color": "black", "fontSize": 10, "fontStyle": "italic",
+               "dx": 10, "xOffset": -65, "yOffset": -270, "dy": 0, "align": "left"
+      },
+      "encoding": {
+          "text": {"value": ["Over the years, it can be","observed that Europe's","death rate has reduced","significantly"]},
+          "opacity": {
+            "value": 0.025
+          }
+        }
+      },
+      {
+        "mark": {"type": "text", "color": "black", "fontSize": 10, "fontStyle": "italic",
+                 "dx": 10, "xOffset": 200, "yOffset": 0, "dy": 0, "align": "left"
+        },
+        "encoding": {
+            "text": {"value": ["Malaysia's death rate has remained", "low (its colour has always been light", "orange) throughout the years."]},
+            "opacity": {
+              "value": 0.025
+            }
+          }
+        },
+        {
+          "mark": {"type": "text", "color": "black", "fontSize": 10, "fontStyle": "italic",
+                   "dx": 10, "xOffset": 200, "yOffset": 90, "dy": 0, "align": "left"
+          },
+          "encoding": {
+              "text": {"value": ["Australia's death rate has decreased", "throughout the years (from darker", "orange to lighter orange)"]},
+              "opacity": {
+                "value": 0.025
+              }
+            }
+          }
   ],
   "config": {
     "view": {

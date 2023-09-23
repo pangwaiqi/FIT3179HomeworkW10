@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Global Death Rate in 2019 (Week 9 Homework)",
+  "title": "Global Death Rate in 2019",
   "width": "container",
   "height": "container",
   "projection": { "type": "equalEarth" },
