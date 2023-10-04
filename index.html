@@ -60,7 +60,7 @@
 
     <div class="container-next-row"></div>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
       var spec1 = "js/bubble_plot.json";
       vegaEmbed("#bubble_plot", spec1)
         .then(function (result) {})
@@ -69,6 +69,26 @@
     <div class="container-row">
       <div
         id="bubble_plot"
+        style="
+          width: 100%;
+          height: 500px;
+          text-align: center;
+          font-size: 12;
+          font-family: Montserrat, sans-serif;
+          color: #444444;
+        "
+      ></div>
+    </div> -->
+
+    <script type="text/javascript">
+      var spec1 = "js/bubble_plot2.json";
+      vegaEmbed("#bubble_plot2", spec1)
+        .then(function (result) {})
+        .catch(console.error);
+    </script>
+    <div class="container-row">
+      <div
+        id="bubble_plot2"
         style="
           width: 100%;
           height: 500px;
