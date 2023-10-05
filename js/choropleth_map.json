@@ -119,14 +119,14 @@
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/mingsheng2002/3179/main/Week-9-Homework/js/ne_110m_graticules_30.json",
+        "url": "js/ne_110m_graticules_30.json",
         "format": { "type": "topojson", "feature": "ne_110m_graticules_30" }
       },
       "mark": { "type": "geoshape", "fill": null, "stroke": "lightgray" }
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/mingsheng2002/3179-Data-Visualisation-Project-2/main/choropleth_map/data/Continent_location.csv"
+        "url": "https://github.com/pangwaiqi/FIT3179DataVisualisation2/blob/main/data/Continent_location.csv"
       },
       "mark": {
         "type": "text",
